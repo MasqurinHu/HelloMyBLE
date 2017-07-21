@@ -9,8 +9,10 @@
 #import "CentralTableViewController.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 
-@interface CentralTableViewController ()
-
+@interface CentralTableViewController ()<CBCentralManagerDelegate,CBPeripheralDelegate>
+{
+    CBCentralManager *manager;
+}
 @end
 
 @implementation CentralTableViewController
