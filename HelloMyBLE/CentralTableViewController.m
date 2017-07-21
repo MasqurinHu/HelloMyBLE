@@ -12,6 +12,9 @@
 @interface CentralTableViewController ()<CBCentralManagerDelegate,CBPeripheralDelegate>
 {
     CBCentralManager *manager;
+    
+    NSMutableDictionary *allItems;
+    NSDate *lastReloadDataDate;
 }
 @end
 
@@ -27,6 +30,8 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     //可能負載重 可以建立背景給他跑
     manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    allItems = [NSMutableDictionary new];
+//    allItems = [NSMutableDictionary dictionary];  Autorelease自動消滅的物件 new的要自己建立自己消滅「在mrc時代」 現在arc用new是比較好的選擇
 }
 
 - (void)didReceiveMemoryWarning {
