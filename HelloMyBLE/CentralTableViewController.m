@@ -16,6 +16,9 @@
     
     NSMutableDictionary *allItems;
     NSDate *lastReloadDataDate;
+    
+    NSMutableArray *restServices;
+    NSMutableString *info;
 }
 @end
 
@@ -214,6 +217,23 @@ didDiscoverPeripheral:(CBPeripheral *)peripheral
 -(void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error{
     
     [self starToScan];  //斷線後恢復掃描
+}
+//發現哪些可支援的services
+#pragma mark - CBPeripheralDelegate Methods
+-(void)peripheral:(CBPeripheral *)peripheral
+didDiscoverServices:(NSError *)error{
+    if (error) {                                        //如果發現過程出包就斷線以及...
+        NSLog(@"didDiscoverServices Fail: %@",error);
+        [manager cancelPeripheralConnection:peripheral];
+        return;     //段開後就到曾經連上又斷線
+    }
+    //try to discover characteristics of each service
+    restServices = [NSMutableArray arrayWithArray:peripheral.services];
+    CBService *service = restServices.firstObject;
+    [restServices removeObjectAtIndex:0];
+    
+    [peripheral discoverCharacteristics:nil forService:service];//cbt 底層受限 一次發n個命令 會異常 要等第一個掃玩回報再掃第二個
+    info = [NSMutableString new];
 }
 
 @end
