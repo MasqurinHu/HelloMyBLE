@@ -196,4 +196,16 @@ didDiscoverPeripheral:(CBPeripheral *)peripheral
     }
 }
 
+-(void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral{
+    
+}
+
+-(void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error{
+    
+}
+//曾經成功連上又斷掉
+-(void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error{
+    
+}
+
 @end
