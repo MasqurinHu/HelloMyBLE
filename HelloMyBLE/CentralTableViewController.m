@@ -242,10 +242,25 @@ didDiscoverServices:(NSError *)error{
 didDiscoverCharacteristicsForService:(CBService *)service
             error:(NSError *)error{
     if (error) {                                        //如果發現過程出包就斷線以及...
-        NSLog(@"didDiscoverCharacteristicsForService Fail: %@",error);
+        NSLog(@"didDiscoverCharacteristicsForService Fail: %@\n",error);
         [manager cancelPeripheralConnection:peripheral];
         return;     //段開後就到曾經連上又斷線
     }
+    //Collect service's informat to info
+    [info appendFormat:@"** Service: %@ (%ld chars.)\n",service.UUID.UUIDString,service.characteristics.count];
+    
+    //collect characteristics' information to info
+    for (CBCharacteristic *tmp in service.characteristics) {
+        [info appendFormat:@"* Char.: %@\n",tmp.UUID.UUIDString];
+    }
+    
+    //Next step?
+    if (restServices.count == 0) {
+        //
+    }else{
+        
+    }
+    
 }
 
 
