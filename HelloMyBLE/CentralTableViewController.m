@@ -106,13 +106,18 @@
         [self stopScanning];
     }
 }
-
+//連上某設備時 掃描停止 以省電 所以拉出來獨立寫 讓程式碼重複利用
 -(void)starToScan{
+    NSArray *services = @[];
+    NSDictionary *options =
+        @{CBCentralManagerScanOptionAllowDuplicatesKey:@(true)};
+    [manager scanForPeripheralsWithServices:services
+                                    options:options];
     
 }
 
 -(void)stopScanning{
-    
+    [manager stopScan];
 }
 
 -(void)showAlert:(NSString*) message{
