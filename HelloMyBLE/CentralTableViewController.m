@@ -104,6 +104,10 @@
 }
 #pragma mark - CBPeripheralDelegate Methods
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central{
-    
+    CBManagerState state = central.state;
+    if (state != CBManagerStatePoweredOn) {
+        NSString *message = [NSString stringWithFormat:@"BLE is not available(error:%ld),",(long)state];
+        NSLog(@"%@",message);
+    }
 }
 @end
