@@ -43,24 +43,34 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+
+    return allItems.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView
+                             dequeueReusableCellWithIdentifier:@"cell"
+                             forIndexPath:indexPath];
     
-    // Configure the cell...
+    NSArray *allKeys = allItems.allKeys;                    // dictionary的key在沒有新物件下 allkeys順序不便
+    NSString *targetUUIDString = allKeys [indexPath.row];
+    DiscoveredItem *item = allItems[targetUUIDString];
+    
+    NSString *line1String = [NSString stringWithFormat:@"%@ RSSI:%ld",item.peripheral.name,item.lastRSSI];
+    NSString *line2String = [NSString stringWithFormat:@"Last Seen:%.1f seconds ago.",[[NSDate date] timeIntervalSinceDate:item.lastSeenDate]];
+    
+    cell.textLabel.text = line1String;
+    cell.detailTextLabel.text = line2String;
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
