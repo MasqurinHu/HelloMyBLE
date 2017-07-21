@@ -100,6 +100,10 @@
 }
 */
 - (IBAction)scanEnableValueChanged:(id)sender {
+    
 }
-
+#pragma mark - CBPeripheralDelegate Methods
+-(void)centralManagerDidUpdateState:(CBCentralManager *)central{
+    
+}
 @end
