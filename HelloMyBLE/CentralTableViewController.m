@@ -58,7 +58,7 @@
                              dequeueReusableCellWithIdentifier:@"cell"
                              forIndexPath:indexPath];
     
-    NSArray *allKeys = allItems.allKeys;                    // dictionary的key在沒有新物件下 allkeys順序不便
+    NSArray *allKeys = allItems.allKeys;                // dictionary的key在沒有新物件下 allkeys順序不便
     NSString *targetUUIDString = allKeys [indexPath.row];
     DiscoveredItem *item = allItems[targetUUIDString];
     
@@ -70,7 +70,19 @@
     
     return cell;
 }
-
+//點下i按鈕連接對方藍牙裝置
+-(void)tableView:(UITableView *)tableView
+accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+    [self connectWithIndexPath:indexPath];
+}
+//基於某些考量 連接動作另外做
+-(void)connectWithIndexPath:(NSIndexPath*)indexPath{
+    NSArray *allKeys = allItems.allKeys;                // dictionary的key在沒有新物件下 allkeys順序不便
+    NSString *targetUUIDString = allKeys [indexPath.row];
+    DiscoveredItem *item = allItems[targetUUIDString];
+    
+    [manager connectPeripheral:item.peripheral options:nil];
+}
 
 /*
 // Override to support conditional editing of the table view.
