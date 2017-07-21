@@ -100,8 +100,21 @@
 }
 */
 - (IBAction)scanEnableValueChanged:(id)sender {
+    if ([sender isOn]) {
+        [self starToScan];
+    }else{
+        [self stopScanning];
+    }
+}
+
+-(void)starToScan{
     
 }
+
+-(void)stopScanning{
+    
+}
+
 -(void)showAlert:(NSString*) message{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
@@ -114,7 +127,7 @@
     CBManagerState state = central.state;
     if (state != CBManagerStatePoweredOn) {
         NSString *message = [NSString stringWithFormat:@"BLE is not available(error:%ld),",(long)state];
-        NSLog(@"%@",message);
+        [self showAlert:message];
     }
 }
 @end
