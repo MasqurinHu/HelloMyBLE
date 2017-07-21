@@ -207,7 +207,8 @@ didDiscoverPeripheral:(CBPeripheral *)peripheral
 }
 
 -(void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error{
-    
+    NSString *message = [NSString stringWithFormat:@"Fail to connect: %@ (%@)",peripheral.name,error];
+    [self showAlert:message];
 }
 //曾經成功連上又斷掉
 -(void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error{
