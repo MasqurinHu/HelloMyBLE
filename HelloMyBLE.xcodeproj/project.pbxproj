@@ -14,6 +14,8 @@
 		459ED0161F21A33C003A5711 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 459ED0141F21A33C003A5711 /* Main.storyboard */; };
 		459ED0181F21A33C003A5711 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 459ED0171F21A33C003A5711 /* Assets.xcassets */; };
 		459ED01B1F21A33C003A5711 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 459ED0191F21A33C003A5711 /* LaunchScreen.storyboard */; };
+		459ED0241F21A348003A5711 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459ED0231F21A348003A5711 /* CoreBluetooth.framework */; };
+		459ED0271F21AB79003A5711 /* CentralTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459ED0261F21AB79003A5711 /* CentralTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,9 @@
 		459ED0171F21A33C003A5711 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		459ED01A1F21A33C003A5711 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		459ED01C1F21A33C003A5711 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		459ED0231F21A348003A5711 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		459ED0251F21AB79003A5711 /* CentralTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CentralTableViewController.h; sourceTree = "<group>"; };
+		459ED0261F21AB79003A5711 /* CentralTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CentralTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				459ED0241F21A348003A5711 /* CoreBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,6 +53,7 @@
 			children = (
 				459ED0071F21A33C003A5711 /* HelloMyBLE */,
 				459ED0061F21A33C003A5711 /* Products */,
+				459ED0221F21A348003A5711 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,6 +75,8 @@
 				459ED0111F21A33C003A5711 /* SecondViewController.h */,
 				459ED0121F21A33C003A5711 /* SecondViewController.m */,
 				459ED0141F21A33C003A5711 /* Main.storyboard */,
+				459ED0251F21AB79003A5711 /* CentralTableViewController.h */,
+				459ED0261F21AB79003A5711 /* CentralTableViewController.m */,
 				459ED0171F21A33C003A5711 /* Assets.xcassets */,
 				459ED0191F21A33C003A5711 /* LaunchScreen.storyboard */,
 				459ED01C1F21A33C003A5711 /* Info.plist */,
@@ -82,6 +91,14 @@
 				459ED0091F21A33C003A5711 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		459ED0221F21A348003A5711 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				459ED0231F21A348003A5711 /* CoreBluetooth.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -117,6 +134,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = J46ZPGV247;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -160,6 +182,7 @@
 				459ED00D1F21A33C003A5711 /* AppDelegate.m in Sources */,
 				459ED0101F21A33C003A5711 /* FirstViewController.m in Sources */,
 				459ED00A1F21A33C003A5711 /* main.m in Sources */,
+				459ED0271F21AB79003A5711 /* CentralTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
