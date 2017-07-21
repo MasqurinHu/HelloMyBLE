@@ -213,6 +213,7 @@ didDiscoverPeripheral:(CBPeripheral *)peripheral
 //曾經成功連上又斷掉
 -(void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error{
     
+    [self starToScan];  //斷線後恢復掃描
 }
 
 @end
