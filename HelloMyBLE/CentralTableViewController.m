@@ -139,4 +139,9 @@
         [self showAlert:message];
     }
 }
+
+-(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *,id> *)advertisementData RSSI:(NSNumber *)RSSI{
+    NSLog(@"Discover:%@,RSSI:%ld,UUID:%@,Data:%@",peripheral.name,RSSI.integerValue,peripheral.identifier,advertisementData.description);
+}
+
 @end
