@@ -165,6 +165,13 @@ didDiscoverPeripheral:(CBPeripheral *)peripheral
     //Add to allItems.
     [allItems setObject:newItem
                  forKey:peripheral.identifier.UUIDString];
+    // Check if we should make tableView reload data.
+    if (existItem == nil ||                                     //發現新設備
+        lastReloadDataDate == nil ||                            //重來沒有刷新過 沒必要存在
+        [now timeIntervalSinceDate:lastReloadDataDate] > 3.0) { //上次刷新時間超過三秒
+        lastReloadDataDate = now;                               //保存時間
+        [self.tableView reloadData];                            //刷新畫面
+    }
 }
 
 @end
