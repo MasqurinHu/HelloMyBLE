@@ -102,6 +102,13 @@
 - (IBAction)scanEnableValueChanged:(id)sender {
     
 }
+-(void)showAlert:(NSString*) message{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:true completion:nil];
+}
+
 #pragma mark - CBPeripheralDelegate Methods
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central{
     CBManagerState state = central.state;
