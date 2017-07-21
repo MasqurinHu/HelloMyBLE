@@ -25,6 +25,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //可能負載重 可以建立背景給他跑
     manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
 }
 
