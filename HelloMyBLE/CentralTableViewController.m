@@ -233,7 +233,19 @@ didDiscoverServices:(NSError *)error{
     [restServices removeObjectAtIndex:0];
     
     [peripheral discoverCharacteristics:nil forService:service];//cbt 底層受限 一次發n個命令 會異常 要等第一個掃玩回報再掃第二個
+    //Prepare info
     info = [NSMutableString new];
 }
+//發現到的services
+-(void)peripheral:(CBPeripheral *)peripheral
+didDiscoverCharacteristicsForService:(CBService *)service
+            error:(NSError *)error{
+    if (error) {                                        //如果發現過程出包就斷線以及...
+        NSLog(@"didDiscoverCharacteristicsForService Fail: %@",error);
+        [manager cancelPeripheralConnection:peripheral];
+        return;     //段開後就到曾經連上又斷線
+    }
+}
+
 
 @end
