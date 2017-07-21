@@ -256,7 +256,9 @@ didDiscoverCharacteristicsForService:(CBService *)service
     
     //Next step?
     if (restServices.count == 0) {
-        //
+        
+        [self showAlert:info];
+        [manager cancelPeripheralConnection:peripheral];
     }else{
         
     }
