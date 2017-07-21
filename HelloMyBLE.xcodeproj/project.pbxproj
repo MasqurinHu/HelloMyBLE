@@ -16,6 +16,7 @@
 		459ED01B1F21A33C003A5711 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 459ED0191F21A33C003A5711 /* LaunchScreen.storyboard */; };
 		459ED0241F21A348003A5711 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459ED0231F21A348003A5711 /* CoreBluetooth.framework */; };
 		459ED0271F21AB79003A5711 /* CentralTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459ED0261F21AB79003A5711 /* CentralTableViewController.m */; };
+		45E9FEB71F21D46300025E7F /* DiscoveredItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E9FEB61F21D46300025E7F /* DiscoveredItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,8 @@
 		459ED0231F21A348003A5711 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		459ED0251F21AB79003A5711 /* CentralTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CentralTableViewController.h; sourceTree = "<group>"; };
 		459ED0261F21AB79003A5711 /* CentralTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CentralTableViewController.m; sourceTree = "<group>"; };
+		45E9FEB51F21D46300025E7F /* DiscoveredItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoveredItem.h; sourceTree = "<group>"; };
+		45E9FEB61F21D46300025E7F /* DiscoveredItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoveredItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +78,8 @@
 				459ED0111F21A33C003A5711 /* SecondViewController.h */,
 				459ED0121F21A33C003A5711 /* SecondViewController.m */,
 				459ED0141F21A33C003A5711 /* Main.storyboard */,
+				45E9FEB51F21D46300025E7F /* DiscoveredItem.h */,
+				45E9FEB61F21D46300025E7F /* DiscoveredItem.m */,
 				459ED0251F21AB79003A5711 /* CentralTableViewController.h */,
 				459ED0261F21AB79003A5711 /* CentralTableViewController.m */,
 				459ED0171F21A33C003A5711 /* Assets.xcassets */,
@@ -180,6 +185,7 @@
 			files = (
 				459ED0131F21A33C003A5711 /* SecondViewController.m in Sources */,
 				459ED00D1F21A33C003A5711 /* AppDelegate.m in Sources */,
+				45E9FEB71F21D46300025E7F /* DiscoveredItem.m in Sources */,
 				459ED0101F21A33C003A5711 /* FirstViewController.m in Sources */,
 				459ED00A1F21A33C003A5711 /* main.m in Sources */,
 				459ED0271F21AB79003A5711 /* CentralTableViewController.m in Sources */,
@@ -343,6 +349,7 @@
 				459ED0211F21A33C003A5711 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
