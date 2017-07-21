@@ -8,6 +8,7 @@
 
 #import "CentralTableViewController.h"
 #import <CoreBluetooth/CoreBluetooth.h>
+#import "DiscoveredItem.h"
 
 @interface CentralTableViewController ()<CBCentralManagerDelegate,CBPeripheralDelegate>
 {
@@ -144,9 +145,26 @@
         [self showAlert:message];
     }
 }
-
--(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *,id> *)advertisementData RSSI:(NSNumber *)RSSI{
-    NSLog(@"Discover:%@,RSSI:%ld,UUID:%@,Data:%@",peripheral.name,RSSI.integerValue,peripheral.identifier,advertisementData.description);
+//每收到一個廣播就呼叫一次這個方法
+-(void)centralManager:(CBCentralManager *)central
+didDiscoverPeripheral:(CBPeripheral *)peripheral
+    advertisementData:(NSDictionary<NSString *,id> *)advertisementData
+                 RSSI:(NSNumber *)RSSI{
+    DiscoveredItem *existItem = allItems[peripheral.identifier.UUIDString];
+    //首次廣播show log
+    if (existItem == nil) {
+        NSLog(@"Discover:%@,RSSI:%ld,UUID:%@,Data:%@",peripheral.name,RSSI.integerValue,peripheral.identifier,advertisementData.description);
+    }
+    NSDate *now = [NSDate date];
+    
+    //Prepare newItems
+    DiscoveredItem *newItem = [DiscoveredItem new];
+    newItem.peripheral = peripheral;
+    newItem.lastRSSI = RSSI.integerValue;
+    newItem.lastSeenDate = now;
+    //Add to allItems.
+    [allItems setObject:newItem
+                 forKey:peripheral.identifier.UUIDString];
 }
 
 @end
