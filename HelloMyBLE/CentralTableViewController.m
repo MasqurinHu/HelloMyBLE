@@ -197,7 +197,13 @@ didDiscoverPeripheral:(CBPeripheral *)peripheral
 }
 
 -(void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral{
+    NSLog(@"didconnectPeripheral: %@",peripheral.name);
     
+    [self stopScanning];
+    
+    //Start discover services of peripheral.
+    peripheral.delegate = self;
+    [peripheral discoverServices:@[]];  //要求設備回報支援的services
 }
 
 -(void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error{
