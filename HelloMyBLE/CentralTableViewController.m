@@ -235,6 +235,7 @@ didDiscoverServices:(NSError *)error{
     [peripheral discoverCharacteristics:nil forService:service];//cbt 底層受限 一次發n個命令 會異常 要等第一個掃玩回報再掃第二個
     //Prepare info
     info = [NSMutableString new];
+    [info appendFormat:@"*** Peripheral: %@ (%ld services)\n",peripheral.name,peripheral.services.count];
 }
 //發現到的services
 -(void)peripheral:(CBPeripheral *)peripheral
