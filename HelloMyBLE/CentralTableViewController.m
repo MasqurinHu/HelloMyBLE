@@ -10,7 +10,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "DiscoveredItem.h"
 //連線對象的識別方法
-#define TARGET_UUID_PEFIX @"FFE1"
+#define TARGET_UUID_PEFIX @"FFE1" //@"FFE1" @"DFB1"
 
 @interface CentralTableViewController ()<CBCentralManagerDelegate,CBPeripheralDelegate>
 {
@@ -163,7 +163,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
     
     if ([segue.identifier isEqualToString:@"goTalking"]) {
         id vc = segue.destinationViewController;
-        [vc setValue:vc forKey:@"targetCharacteristic"];
+        [vc setValue:talkingCharacteristic forKey:@"targetCharacteristic"];
     }
     
 }

@@ -13,6 +13,7 @@
 
 
 @property (weak, nonatomic) IBOutlet MUIBottonlineTextField *inputTextField;
+
 @property (weak, nonatomic) IBOutlet UITextView *logTextView;
 
 
@@ -41,10 +42,26 @@
 
 - (IBAction)sendBtnPressed:(id)sender {
     
+    // input is empty
+    if (_inputTextField.text.length == 0) {
+        return;
+    }
+    
+    //dismiss keyboard
+    [_inputTextField resignFirstResponder];
+    
+    //Prepare content to send
+    NSString *content = [NSString stringWithFormat:@"[Masqurin] %@\n",_inputTextField.text];
+    _inputTextField.text = @"";
+    //字串轉nsdata
+    NSData *data = [content dataUsingEncoding:NSUTF8StringEncoding];
+    
+    //測試發送
+    [_targetCharacteristic.service.peripheral writeValue:data forCharacteristic:_targetCharacteristic type:CBCharacteristicWriteWithoutResponse];
 }
 
 #pragma mark - CBPeripheralDelegate
-//接收訂閱通知 
+//接收訂閱通知
 -(void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
     
     NSString *message;

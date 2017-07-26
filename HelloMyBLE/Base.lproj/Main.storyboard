@@ -169,14 +169,14 @@
                                 <rect key="frame" x="276" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Send"/>
+                                <connections>
+                                    <action selector="sendBtnPressed:" destination="q3T-Yi-YMu" eventType="touchUpInside" id="5OU-fR-rNj"/>
+                                </connections>
                             </button>
-                            <connections>
-                                <action selector="sendBtnPressed:" destination="q3T-Yi-YMu" id="jnv-BU-vjE"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="inputTextField" destination="ufo-lv-OHY" id="vTJ-IQ-N2g"/>
+                        <outlet property="inputTextField" destination="ufo-lv-OHY" id="PDv-6j-5Gh"/>
                         <outlet property="logTextView" destination="XWK-wB-i2K" id="lcx-ul-UaH"/>
                     </connections>
                 </viewController>
