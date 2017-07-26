@@ -137,6 +137,7 @@
 }
 
 - (IBAction)sendBtnPressed:(id)sender {
+    [self sendText:input.text central:nil];
 }
 
 #pragma Mark - CBPeripheralManagerDelegate
@@ -157,7 +158,7 @@
     _logTextView.text = [NSString stringWithFormat:@"%@%@",info,_logTextView.text];
     
     //say hello
-    NSString *hello = [NSString stringWithFormat:@"[%@] Welcome!(Total: %ld)\n",CHATROOM_NAME,myCharacteristic.subscribedCentrals.count];
+    NSString *hello = [NSString stringWithFormat:@"[%@] 您好 歡迎光臨!(Total: %ld)\n",CHATROOM_NAME,myCharacteristic.subscribedCentrals.count];
     
     [self sendText:hello central:central];
     NSString *someCComing = [NSString stringWithFormat:@"[%@] SomeComing!(Total: %ld)\n",CHATROOM_NAME,myCharacteristic.subscribedCentrals.count];
@@ -166,7 +167,15 @@
 }
 
 -(void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic{
+    NSString *someCComing = [NSString stringWithFormat:@"[%@] 五狼照阿!(Total: %ld)\n",CHATROOM_NAME,myCharacteristic.subscribedCentrals.count];
+    [self sendText:someCComing central:nil];
+}
+
+-(void)peripheralManagerIsReadyToUpdateSubscribers:(CBPeripheralManager *)peripheral{
+    NSLog(@"peripheralManagerIsReadyToUpdateSubscribers.");
     
+    [self sendText:messageBuffer central:nil];
+    messageBuffer = nil;
 }
 
 @end
