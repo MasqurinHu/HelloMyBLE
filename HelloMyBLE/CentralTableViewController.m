@@ -9,6 +9,8 @@
 #import "CentralTableViewController.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "DiscoveredItem.h"
+//連線對象的識別方法
+#define TARGET_UUID_PEFIX @"FFE1"
 
 @interface CentralTableViewController ()<CBCentralManagerDelegate,CBPeripheralDelegate>
 {
@@ -81,7 +83,17 @@
 -(void)tableView:(UITableView *)tableView
 accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
     [self connectWithIndexPath:indexPath];
+    //如果不要溝通 純掃描
+    isTalkingMode = false;
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //要溝通前 做的是跟掃描一樣 再char做不一樣的是
+    [self connectWithIndexPath:indexPath];
+    //如果要溝通 跟掃描做區別
+    isTalkingMode = true;
+}
+
 //基於某些考量 連接動作另外做
 -(void)connectWithIndexPath:(NSIndexPath*)indexPath{
     NSArray *allKeys = allItems.allKeys;                // dictionary的key在沒有新物件下 allkeys順序不便
@@ -256,6 +268,13 @@ didDiscoverCharacteristicsForService:(CBService *)service
     //collect characteristics' information to info
     for (CBCharacteristic *tmp in service.characteristics) {
         [info appendFormat:@"* Char.: %@\n",tmp.UUID.UUIDString];
+        //check if it is talking mode ,and it is what we are looking for
+        if (isTalkingMode && [tmp.UUID.UUIDString hasPrefix:TARGET_UUID_PEFIX]) {
+            talkingCharacteristic = tmp;
+            [self performSegueWithIdentifier:@"goTalking" sender:nil];
+            return;
+        }
+        
     }
     
     //Next step?
