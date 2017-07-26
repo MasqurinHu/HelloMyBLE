@@ -260,7 +260,12 @@ didDiscoverCharacteristicsForService:(CBService *)service
         [self showAlert:info];
         [manager cancelPeripheralConnection:peripheral];
     }else{
+        //如果還有其他service繼續掃描
         
+        CBService *service = restServices.firstObject;
+        [restServices removeObjectAtIndex:0];
+        
+        [peripheral discoverCharacteristics:nil forService:service];
     }
     
 }
