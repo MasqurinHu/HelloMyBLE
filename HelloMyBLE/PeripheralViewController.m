@@ -75,6 +75,34 @@
     
     if (myCharacteristic == nil) {
         //生出characteristic
+        CBUUID *characteristicUUID = [CBUUID UUIDWithString:CHARACTERISTIC_UUID];
+        //prepare characteristic 屬性資訊 被中心讀取
+        CBCharacteristicProperties properties =
+        CBCharacteristicPropertyWrite |
+        CBCharacteristicPropertyRead |
+        CBCharacteristicPropertyNotify;
+        //怎樣被存取 可讀可寫
+        CBAttributePermissions permissions =
+        CBAttributePermissionsReadable |
+        CBAttributePermissionsWriteable;
+        
+        myCharacteristic = [[CBMutableCharacteristic alloc]
+                            initWithType:characteristicUUID
+                            properties:properties
+                            value:nil
+                            permissions:permissions];
+        //prepare service
+        CBMutableService *myService = [[CBMutableService alloc]
+                                       initWithType:serviceUUID
+                                       primary:true];
+        
+        myService.characteristics = @[myCharacteristic];
+        [manager addService:myService];
+        
+//        NSInteger i = 5;
+//        NSInteger j = i * 2;
+//        NSInteger j << 1; 同上 效能更好
+        
     }
     
     //Start Advertising!
@@ -84,6 +112,7 @@
 }
 
 -(void) stopAdvertise{
+    [manager stopAdvertising];
 }
 
 - (IBAction)sendBtnPressed:(id)sender {
