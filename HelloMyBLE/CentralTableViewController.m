@@ -19,6 +19,10 @@
     
     NSMutableArray *restServices;
     NSMutableString *info;
+    
+    //for talking support
+    BOOL isTalkingMode;
+    CBCharacteristic *talkingCharacteristic;
 }
 @end
 
