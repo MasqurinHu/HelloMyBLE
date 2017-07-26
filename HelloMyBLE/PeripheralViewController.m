@@ -115,10 +115,14 @@
     [manager stopAdvertising];
 }
 
+-(void) sendText:(NSString*) text
+         central:(CBCentral*) central {
+}
+
 - (IBAction)sendBtnPressed:(id)sender {
 }
 
-#pragma Mark - 
+#pragma Mark - CBPeripheralManagerDelegate
 -(void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral{
     
     CBManagerState state = peripheral.state;
@@ -127,6 +131,20 @@
         NSLog(@"BLE is not available. (%ld)",(long)state);
     }
     
+    
+}
+
+-(void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didSubscribeToCharacteristic:(CBCharacteristic *)characteristic{
+    
+    NSString *info = [NSString stringWithFormat:@"* Central subscribed: UUID %@,max: %lu\n",central.identifier.UUIDString,central.maximumUpdateValueLength];
+    _logTextView.text = [NSString stringWithFormat:@"%@%@",info,_logTextView];
+    
+    //say hello
+    NSString *hello = [NSString stringWithFormat:@"[%@] Welcome!(Total: %ld)\n",CHATROOM_NAME,myCharacteristic.subscribedCentrals.count];
+    
+}
+
+-(void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic{
     
 }
 

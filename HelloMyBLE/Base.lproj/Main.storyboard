@@ -60,7 +60,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Peripheral" id="B92-fY-KNz">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="0uw-Zu-VuM">
-                            <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="lZH-oG-uyr">
+                            <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="lZH-oG-uyr">
                                 <rect key="frame" x="310" y="6" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
