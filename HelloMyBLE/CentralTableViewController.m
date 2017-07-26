@@ -49,6 +49,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    //Disconnect connection and startToScan again after return from TalkingViewController
+    //talk回來後 斷線 重新掃描
+    
+    [super viewDidAppear: animated];
+    if (talkingCharacteristic != nil) {
+        [manager cancelPeripheralConnection:talkingCharacteristic.service.peripheral];
+        //如果沒斷線 回源頭斷線
+        talkingCharacteristic = nil;
+    }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
