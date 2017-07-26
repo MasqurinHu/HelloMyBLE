@@ -137,15 +137,25 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    //ios架構所有元件幾乎都是 key value
+    //key 就是porperty value內容
+    //key必須跟property一模一樣 包含大小寫
+    
+    if ([segue.identifier isEqualToString:@"goTalking"]) {
+        id vc = segue.destinationViewController;
+        [vc setValue:vc forKey:@"targetCharacteristic"];
+    }
+    
 }
-*/
+
 - (IBAction)scanEnableValueChanged:(id)sender {
     if ([sender isOn]) {
         [self starToScan];
