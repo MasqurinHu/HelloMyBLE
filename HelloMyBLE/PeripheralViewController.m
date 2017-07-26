@@ -12,13 +12,15 @@
 
 #define SERVICE_UUID            @"8881"
 #define CHARACTERISTIC_UUID     @"8882"
-#define CHATROOM_NAME           @"Masqurin的聊天室"
+#define CHATROOM_NAME           @"5+1的聊天室"
 
 @interface PeripheralViewController ()<CBPeripheralManagerDelegate>
 {
     MUIBottonlineTextField *input;
     CBPeripheralManager *manager;
     CBMutableCharacteristic *myCharacteristic;
+    
+    NSMutableString *messageBuffer;
 }
 @property (weak, nonatomic) IBOutlet UIView *aaa;
 @property (weak, nonatomic) IBOutlet UIButton *bbb;
@@ -117,6 +119,21 @@
 
 -(void) sendText:(NSString*) text
          central:(CBCentral*) central {
+    
+    NSArray *centrals = (central == nil) ? nil : @[central];
+    NSData *data= [text dataUsingEncoding:NSUTF8StringEncoding];
+    
+    BOOL result = [manager updateValue:data forCharacteristic:myCharacteristic onSubscribedCentrals:centrals];
+    NSLog(@"Send: %@",text);
+    NSLog(@"Result: %@",(result?@"OK":@"Fail"));
+    
+    //keep the text
+    if (result == false) {
+        messageBuffer = [NSMutableString stringWithString:text];
+    }else{
+        [messageBuffer appendString:text];
+    }
+    
 }
 
 - (IBAction)sendBtnPressed:(id)sender {
@@ -137,10 +154,14 @@
 -(void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didSubscribeToCharacteristic:(CBCharacteristic *)characteristic{
     
     NSString *info = [NSString stringWithFormat:@"* Central subscribed: UUID %@,max: %lu\n",central.identifier.UUIDString,central.maximumUpdateValueLength];
-    _logTextView.text = [NSString stringWithFormat:@"%@%@",info,_logTextView];
+    _logTextView.text = [NSString stringWithFormat:@"%@%@",info,_logTextView.text];
     
     //say hello
     NSString *hello = [NSString stringWithFormat:@"[%@] Welcome!(Total: %ld)\n",CHATROOM_NAME,myCharacteristic.subscribedCentrals.count];
+    
+    [self sendText:hello central:central];
+    NSString *someCComing = [NSString stringWithFormat:@"[%@] SomeComing!(Total: %ld)\n",CHATROOM_NAME,myCharacteristic.subscribedCentrals.count];
+    [self sendText:someCComing central:nil];
     
 }
 

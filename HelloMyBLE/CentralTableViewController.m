@@ -10,7 +10,8 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "DiscoveredItem.h"
 //連線對象的識別方法
-#define TARGET_UUID_PEFIX @"FFE1" //@"FFE1" @"DFB1"
+#define TARGET_UUID_PEFIX @"8882" //@"FFE1" @"DFB1" @"8882"
+
 
 @interface CentralTableViewController ()<CBCentralManagerDelegate,CBPeripheralDelegate>
 {
