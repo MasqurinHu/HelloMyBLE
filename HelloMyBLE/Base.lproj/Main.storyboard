@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -118,10 +119,70 @@
                             </switch>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="q3T-Yi-YMu" kind="show" identifier="goTalking" id="1L2-a5-Zcq"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PSl-Tn-KqB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1551" y="-341"/>
+        </scene>
+        <!--Talking-->
+        <scene sceneID="gqq-FM-Ghu">
+            <objects>
+                <viewController storyboardIdentifier="go" id="q3T-Yi-YMu" customClass="TalkingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ioV-t8-D1g"/>
+                        <viewControllerLayoutGuide type="bottom" id="8o9-pQ-YQ5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MTu-2m-TJ7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ufo-lv-OHY" customClass="MUIBottonlineTextField">
+                                <rect key="frame" x="16" y="72" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XWK-wB-i2K">
+                                <rect key="frame" x="16" y="110" width="343" height="508"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XWK-wB-i2K" firstAttribute="top" secondItem="ufo-lv-OHY" secondAttribute="bottom" constant="8" id="BTp-fA-CDo"/>
+                            <constraint firstItem="XWK-wB-i2K" firstAttribute="leading" secondItem="MTu-2m-TJ7" secondAttribute="leadingMargin" id="Bg0-ly-tN8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ufo-lv-OHY" secondAttribute="trailing" id="E2D-IG-oA9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="XWK-wB-i2K" secondAttribute="trailing" id="TES-hq-jZg"/>
+                            <constraint firstItem="8o9-pQ-YQ5" firstAttribute="top" secondItem="XWK-wB-i2K" secondAttribute="bottom" id="Z1h-Au-95U"/>
+                            <constraint firstItem="ufo-lv-OHY" firstAttribute="leading" secondItem="MTu-2m-TJ7" secondAttribute="leadingMargin" id="i7w-i7-MKd"/>
+                            <constraint firstItem="ufo-lv-OHY" firstAttribute="top" secondItem="ioV-t8-D1g" secondAttribute="bottom" constant="8" id="ogo-HE-5aZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Talking" id="xfN-jE-OWJ">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="VfO-Li-qpl">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Xm2-pw-YNp">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Send"/>
+                            </button>
+                            <connections>
+                                <action selector="sendBtnPressed:" destination="q3T-Yi-YMu" id="jnv-BU-vjE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="inputTextField" destination="ufo-lv-OHY" id="vTJ-IQ-N2g"/>
+                        <outlet property="logTextView" destination="XWK-wB-i2K" id="lcx-ul-UaH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rro-qR-nvE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2267" y="-334"/>
         </scene>
         <!--Central-->
         <scene sceneID="vgD-gg-Fr0">
