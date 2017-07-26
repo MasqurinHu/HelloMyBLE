@@ -58,6 +58,7 @@
     
     //測試發送 type兩種 會不會回傳 看是否要確保要不要一定要收到
     CBCharacteristicProperties properties = _targetCharacteristic.properties;
+    //屬性內有沒有不要回報 沒有的話屬性是要回報
     CBCharacteristicWriteType type = (properties & CBCharacteristicPropertyWriteWithoutResponse)? CBCharacteristicWriteWithoutResponse:CBCharacteristicWriteWithResponse;
     
     [_targetCharacteristic.service.peripheral writeValue:data forCharacteristic:_targetCharacteristic type:type];
@@ -77,6 +78,14 @@
     _logTextView.text = [NSString stringWithFormat:@"%@%@",message,_logTextView.text];
 }
 
+//要回報的屬性才會觸發這個方法
+-(void)peripheral:(CBPeripheral *)peripheral
+didWriteValueForCharacteristic:(CBCharacteristic *)characteristic
+            error:(NSError *)error{
+    if (error) {
+        NSLog(@"didwriteValueForCharacteristic:%@",error);
+    }
+}
 
 /*
 #pragma mark - Navigation
