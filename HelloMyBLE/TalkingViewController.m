@@ -56,8 +56,11 @@
     //字串轉nsdata
     NSData *data = [content dataUsingEncoding:NSUTF8StringEncoding];
     
-    //測試發送
-    [_targetCharacteristic.service.peripheral writeValue:data forCharacteristic:_targetCharacteristic type:CBCharacteristicWriteWithoutResponse];
+    //測試發送 type兩種 會不會回傳 看是否要確保要不要一定要收到
+    CBCharacteristicProperties properties = _targetCharacteristic.properties;
+    CBCharacteristicWriteType type = (properties & CBCharacteristicPropertyWriteWithoutResponse)? CBCharacteristicWriteWithoutResponse:CBCharacteristicWriteWithResponse;
+    
+    [_targetCharacteristic.service.peripheral writeValue:data forCharacteristic:_targetCharacteristic type:type];
 }
 
 #pragma mark - CBPeripheralDelegate
