@@ -33,6 +33,9 @@
     peripheral.delegate = self;
     //所以設定 訂閱模式 東西有資料主動通知
     [peripheral setNotifyValue:true forCharacteristic:_targetCharacteristic];
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

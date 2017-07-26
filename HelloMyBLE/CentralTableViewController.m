@@ -179,10 +179,10 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
 //連上某設備時 掃描停止 以省電 所以拉出來獨立寫 讓程式碼重複利用
 -(void)starToScan{
     
-//    CBUUID *service1 = [CBUUID UUIDWithString:@"1234"];
+    CBUUID *service1 = [CBUUID UUIDWithString:@"8881"];
 //    CBUUID *service2 = [CBUUID UUIDWithString:@"abcd"];
     
-    NSArray *services = @[/*service1,service2*/];
+    NSArray *services = @[service1/*service1,service2*/];
     NSDictionary *options =
         @{CBCentralManagerScanOptionAllowDuplicatesKey:@(true)};
     [manager scanForPeripheralsWithServices:services
@@ -292,6 +292,7 @@ didDiscoverCharacteristicsForService:(CBService *)service
     for (CBCharacteristic *tmp in service.characteristics) {
         [info appendFormat:@"* Char.: %@\n",tmp.UUID.UUIDString];
         //check if it is talking mode ,and it is what we are looking for
+        NSLog(@"\n%d\n%@",isTalkingMode,tmp.UUID.UUIDString);
         if (isTalkingMode && [tmp.UUID.UUIDString hasPrefix:TARGET_UUID_PEFIX]) {
             talkingCharacteristic = tmp;
             [self performSegueWithIdentifier:@"goTalking" sender:nil];

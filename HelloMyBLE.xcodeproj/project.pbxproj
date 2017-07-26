@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		459C64C61F283B6F00A06324 /* TalkingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459C64C51F283B6F00A06324 /* TalkingViewController.m */; };
-		459C64C91F283C9B00A06324 /* MUIBottonlineTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 459C64C81F283C9B00A06324 /* MUIBottonlineTextField.m */; };
+		459C64CD1F28FD2900A06324 /* MUIBottonlineTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 459C64CC1F28FD2900A06324 /* MUIBottonlineTextField.m */; };
 		459ED00A1F21A33C003A5711 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 459ED0091F21A33C003A5711 /* main.m */; };
 		459ED00D1F21A33C003A5711 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 459ED00C1F21A33C003A5711 /* AppDelegate.m */; };
 		459ED0101F21A33C003A5711 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459ED00F1F21A33C003A5711 /* FirstViewController.m */; };
@@ -24,8 +24,8 @@
 /* Begin PBXFileReference section */
 		459C64C41F283B6F00A06324 /* TalkingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TalkingViewController.h; sourceTree = "<group>"; };
 		459C64C51F283B6F00A06324 /* TalkingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TalkingViewController.m; sourceTree = "<group>"; };
-		459C64C71F283C9B00A06324 /* MUIBottonlineTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUIBottonlineTextField.h; sourceTree = "<group>"; };
-		459C64C81F283C9B00A06324 /* MUIBottonlineTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUIBottonlineTextField.m; sourceTree = "<group>"; };
+		459C64CB1F28FD2900A06324 /* MUIBottonlineTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUIBottonlineTextField.h; sourceTree = "<group>"; };
+		459C64CC1F28FD2900A06324 /* MUIBottonlineTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUIBottonlineTextField.m; sourceTree = "<group>"; };
 		459ED0051F21A33C003A5711 /* HelloMyBLE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloMyBLE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		459ED0091F21A33C003A5711 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		459ED00B1F21A33C003A5711 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -60,8 +60,8 @@
 		459C64CA1F283E7300A06324 /* Masqurin */ = {
 			isa = PBXGroup;
 			children = (
-				459C64C71F283C9B00A06324 /* MUIBottonlineTextField.h */,
-				459C64C81F283C9B00A06324 /* MUIBottonlineTextField.m */,
+				459C64CB1F28FD2900A06324 /* MUIBottonlineTextField.h */,
+				459C64CC1F28FD2900A06324 /* MUIBottonlineTextField.m */,
 			);
 			name = Masqurin;
 			sourceTree = "<group>";
@@ -206,7 +206,7 @@
 				459C64C61F283B6F00A06324 /* TalkingViewController.m in Sources */,
 				45E9FEB71F21D46300025E7F /* DiscoveredItem.m in Sources */,
 				459ED0101F21A33C003A5711 /* FirstViewController.m in Sources */,
-				459C64C91F283C9B00A06324 /* MUIBottonlineTextField.m in Sources */,
+				459C64CD1F28FD2900A06324 /* MUIBottonlineTextField.m in Sources */,
 				459ED00A1F21A33C003A5711 /* main.m in Sources */,
 				459ED0271F21AB79003A5711 /* CentralTableViewController.m in Sources */,
 			);

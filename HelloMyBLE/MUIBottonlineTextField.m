@@ -45,7 +45,7 @@
                   relatedBy:NSLayoutRelationEqual
                   toItem:self
                   attribute:NSLayoutAttributeBottom
-                  multiplier:1.0 constant:.0];
+                  multiplier:1.0 constant:-1.0];
     [self addConstraint:constraint];
     constraint = [NSLayoutConstraint
                   constraintWithItem:bottomline

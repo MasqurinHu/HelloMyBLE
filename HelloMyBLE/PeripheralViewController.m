@@ -40,7 +40,7 @@
     input.translatesAutoresizingMaskIntoConstraints = false;
     NSMutableArray <NSLayoutConstraint*>*lay = [NSMutableArray new];
     [lay addObject:[NSLayoutConstraint constraintWithItem:input attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:_aaa attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0.0]];
-    [lay addObject:[NSLayoutConstraint constraintWithItem:input attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:_bbb attribute:NSLayoutAttributeRight multiplier:1.0 constant:0.0]];
+    [lay addObject:[NSLayoutConstraint constraintWithItem:input attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:_bbb attribute:NSLayoutAttributeRight multiplier:1.0 constant:-50.0]];
     [lay addObject:[NSLayoutConstraint constraintWithItem:input attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:_aaa attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
     [lay addObject:[NSLayoutConstraint constraintWithItem:input attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:_aaa attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
     [_aaa addConstraints:lay];
@@ -137,7 +137,15 @@
 }
 
 - (IBAction)sendBtnPressed:(id)sender {
-    [self sendText:input.text central:nil];
+    
+    if (input.text.length == 0) {
+        return;
+    }
+    
+    NSString *message = [NSString stringWithFormat:@"[%@] %@\n",CHATROOM_NAME,input.text];
+    [self sendText:message central:nil];
+    _logTextView.text = [NSString stringWithFormat:@"[%@] %@\n",CHATROOM_NAME,_logTextView.text];
+    input.text = @"";
 }
 
 #pragma Mark - CBPeripheralManagerDelegate
@@ -176,6 +184,21 @@
     
     [self sendText:messageBuffer central:nil];
     messageBuffer = nil;
+}
+
+-(void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveWriteRequests:(NSArray<CBATTRequest *> *)requests{
+    for (CBATTRequest *tmp in requests) {
+        NSString *content = [[NSString alloc] initWithData:tmp.value encoding:NSUTF8StringEncoding];
+        if (content != nil) {
+            _logTextView.text = [NSString stringWithFormat:@"%@%@",content,_logTextView.text];
+            [self sendText:content central:nil];
+        }
+        //重要
+        [manager respondToRequest:tmp withResult:CBATTErrorSuccess];//回應 避免central以為沒收到
+    }
+    
+    
+    
 }
 
 @end
