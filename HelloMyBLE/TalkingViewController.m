@@ -34,8 +34,6 @@
     //所以設定 訂閱模式 東西有資料主動通知
     [peripheral setNotifyValue:true forCharacteristic:_targetCharacteristic];
     
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,7 +62,10 @@
     //屬性內有沒有不要回報 沒有的話屬性是要回報
     CBCharacteristicWriteType type = (properties & CBCharacteristicPropertyWriteWithoutResponse)? CBCharacteristicWriteWithoutResponse:CBCharacteristicWriteWithResponse;
     
-    [_targetCharacteristic.service.peripheral writeValue:data forCharacteristic:_targetCharacteristic type:type];
+    //發送訊息給裝置
+    [_targetCharacteristic.service.peripheral writeValue:data
+                                       forCharacteristic:_targetCharacteristic
+                                                    type:type];
 }
 
 #pragma mark - CBPeripheralDelegate

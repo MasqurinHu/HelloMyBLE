@@ -85,6 +85,7 @@
     }
 }
 
+//開始廣播 播放給接收主控的訊息
 -(void) startToAdvertise{
     
     CBUUID *serviceUUID = [CBUUID UUIDWithString:SERVICE_UUID];

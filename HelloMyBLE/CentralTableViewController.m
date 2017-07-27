@@ -12,7 +12,7 @@
 //連線對象的識別方法
 #define TARGET_UUID_PEFIX @"8882" //@"FFE1" @"DFB1" @"8882"
 
-
+//搜索藍牙
 @interface CentralTableViewController ()<CBCentralManagerDelegate,CBPeripheralDelegate>
 {
     CBCentralManager *manager;
@@ -75,12 +75,15 @@
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     UITableViewCell *cell = [tableView
                              dequeueReusableCellWithIdentifier:@"cell"
                              forIndexPath:indexPath];
     
-    NSArray *allKeys = allItems.allKeys;                // dictionary的key在沒有新物件下 allkeys順序不便
+    //key排序可順序拿出uuid 及其他相關資訊
+    NSArray *allKeys = allItems.allKeys;// dictionary的key在沒有新物件下 allkeys順序不便
     NSString *targetUUIDString = allKeys [indexPath.row];
     DiscoveredItem *item = allItems[targetUUIDString];
     
@@ -94,14 +97,15 @@
 }
 //點下i按鈕連接對方藍牙裝置
 -(void)tableView:(UITableView *)tableView
-accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+    accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+    
     [self connectWithIndexPath:indexPath];
-    //如果不要溝通 純掃描
+    //不要溝通 純掃描
     isTalkingMode = false;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //要溝通前 做的是跟掃描一樣 再char做不一樣的是
+    //要溝通前 做的事跟掃描一樣 再char做不一樣的事
     [self connectWithIndexPath:indexPath];
     //如果要溝通 跟掃描做區別
     isTalkingMode = true;
@@ -237,8 +241,9 @@ didDiscoverPeripheral:(CBPeripheral *)peripheral
         [self.tableView reloadData];                            //刷新畫面
     }
 }
-
+//連結裝置呼叫方法
 -(void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral{
+    
     NSLog(@"didconnectPeripheral: %@",peripheral.name);
     
     [self stopScanning];
