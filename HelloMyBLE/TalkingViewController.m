@@ -36,6 +36,11 @@
     
 }
 
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    CBPeripheral *peripheral = _targetCharacteristic.service.peripheral;
+    [peripheral setNotifyValue:false forCharacteristic:_targetCharacteristic];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
